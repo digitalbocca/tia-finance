@@ -4,12 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite --host"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "sass": "^1.54.1"
+    "@vitejs/plugin-vue": "^3.0.1",
+    "sass": "^1.54.1",
+    "vite": "^3.0.4"
+  },
+  "dependencies": {
+    "vue": "^3.2.37"
   }
 }
