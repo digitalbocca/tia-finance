@@ -10,7 +10,7 @@
     </div>
   </div>
   <div>
-    <button @click="atualizaMes()">Pago</button>
+    <button class="btn btn-primary btn-wide" @click="atualizaMes()">Pago</button>
   </div>
 </template>
 

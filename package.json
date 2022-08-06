@@ -11,10 +11,14 @@
   "license": "ISC",
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.0.1",
+    "autoprefixer": "^10.4.8",
+    "postcss": "^8.4.14",
     "sass": "^1.54.1",
+    "tailwindcss": "^3.1.8",
     "vite": "^3.0.4"
   },
   "dependencies": {
+    "daisyui": "^2.22.0",
     "vue": "^3.2.37"
   }
 }
