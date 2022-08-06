@@ -39,22 +39,3 @@ html, body {
   width: 480px;
   margin-top: 32px
 }
-
-.mes {
-  width: 100px;
-  height: 100px;
-  background-color: #ecf0f1;
-  margin: 10px;
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #bdc3c744;
-}
-
-.pago {
-  background-color: #2ecc71;
-  color: #fff;
-}

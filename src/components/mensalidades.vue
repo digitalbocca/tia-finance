@@ -1,16 +1,19 @@
 <template>
-  <div class="mensalidades">
+  <div class="w-full">
     <div
-      class="mes"
-      :class="{ pago: mes.status }"
+      class="stats shadow w-full sm:w-1/2 md:w-1/3 lg:w-1/4 my-4 mx-2"
       v-for="mes in meses"
       :key="mes.nome"
     >
-      {{ mes.nome }}
+      <div class="stat">
+        <div class="stat-title">{{ mes.nome }}</div>
+        <div class="valor" :class="{ pago: mes.status }">200,00</div>
+        <div class="stat-desc">Venc: 5 de {{ mes.nome }}</div>
+      </div>
     </div>
   </div>
   <div>
-    <button class="btn btn-primary btn-wide" @click="atualizaMes()">Pago</button>
+    <button class="btn-pagar" @click="atualizaMes()">Pago</button>
   </div>
 </template>
 
@@ -78,3 +81,17 @@
   }
 
 </script>
+
+<style lang="sass">
+
+.btn-pagar
+  @apply btn btn-primary btn-wide
+
+.valor
+  @apply stat-value text-base-300
+
+.pago
+  @apply text-success
+  
+
+</style>
