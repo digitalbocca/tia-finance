@@ -1,7 +1,7 @@
 <template>
-  <div class="w-full">
+  <div class="mensalidades">
     <div
-      class="stats shadow w-full sm:w-1/2 md:w-1/3 lg:w-1/4 my-4 mx-2"
+      class="stats shadow w-full"
       v-for="mes in meses"
       :key="mes.nome"
     >
@@ -83,6 +83,11 @@
 </script>
 
 <style lang="sass">
+
+.mensalidades
+  @apply grid gap-4 items-center 
+  @apply grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4
+  @apply my-4
 
 .btn-pagar
   @apply btn btn-primary btn-wide
