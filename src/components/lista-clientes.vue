@@ -1,42 +1,30 @@
 <template>
 <div class="overflow-x-auto w-full">
   <table class="table w-full">
-    <!-- head -->
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th></th>
-      </tr>
-    </thead>
     <tbody>
-      <!-- row 1 -->
-      <tr v-for="user in users" :key="user.login.uuid">
+      <tr v-for="user in users" :key="user.id">
         <td>
           <div class="flex items-center space-x-3">
             <div class="avatar">
-              <div class="mask mask-squircle w-12 h-12">
-                <img :src="user.picture.thumbnail" alt="Avatar Tailwind CSS Component" />
+              <div class="mask rounded-full w-12 h-12">
+                <div class="bg-gray-300">
+                  <user-icon class="text-gray-600"></user-icon>
+                </div>
               </div>
             </div>
             <div>
-              <div class="font-bold">{{ user.name.first }} {{ user.name.last }}</div>
+              <div class="font-bold">{{ user.name }}</div>
               <div class="text-sm opacity-50">{{ user.phone }}</div>
             </div>
           </div>
         </td>
         <th>
-          <button class="btn btn-ghost btn-xs" @click="vaPra()">details</button>
+          <button class="btn btn-success" @click="vaPra()">
+            <currency-dollar-icon class="w-8 text-white"></currency-dollar-icon>
+          </button>
         </th>
       </tr>
     </tbody>
-    <!-- foot -->
-    <tfoot>
-      <tr>
-        <th>Name</th>
-        <th></th>
-      </tr>
-    </tfoot>
-    
   </table>
 </div>
   
@@ -47,14 +35,26 @@
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { getAuth } from 'firebase/auth'
-import { collection, addDoc, getFirestore } from 'firebase/firestore' 
-import axios from 'axios'
+import { collection, query, onSnapshot, getFirestore } from 'firebase/firestore' 
+import { UserIcon, CurrencyDollarIcon } from '@heroicons/vue/solid'
 
 const users = ref([])
 
+const auth = getAuth()
+const db = getFirestore()
+
 onMounted(async () => {
-  const response = (await axios.get('https://randomuser.me/api/?nat=br&results=20')).data
-  users.value = response.results
+  const q = query(collection(db, `users/${auth.currentUser.uid}/clients`));
+  const unsubscribe = onSnapshot(q, querySnapshot => {
+    const snapshotedUsers = []
+    querySnapshot.forEach(doc => {
+      snapshotedUsers.push({
+        id: doc.id,
+        ...doc.data()
+      })
+    });
+    users.value = snapshotedUsers
+  });
 })
 
 const router = useRouter()
