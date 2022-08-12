@@ -1,13 +1,13 @@
 <template>
-  <div class="py-8">
+  <div class="py-8 flex flex-col justify-center lg:flex-row">
     <input 
-      class="input input-bordered mr-2"
+      class="input input-bordered lg:mr-2"
       v-model="client.name"
       type="text"
       placeholder="Nome completo"
     >
     <input 
-      class="input input-bordered mr-2"
+      class="input input-bordered lg:mr-2 my-2 lg:my-0"
       v-model="client.phone"
       type="text"
       placeholder="(11) 99999-9999"

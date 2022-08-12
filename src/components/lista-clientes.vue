@@ -18,7 +18,7 @@
             </div>
           </div>
         </td>
-        <th>
+        <th class="text-right">
           <button class="btn btn-success" @click="vaPra()">
             <currency-dollar-icon class="w-8 text-white"></currency-dollar-icon>
           </button>
