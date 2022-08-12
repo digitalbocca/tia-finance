@@ -1,10 +1,5 @@
 <template>
 <div class="overflow-x-auto w-full">
-  <div>
-    <input v-model="novoUsuario" type="text">
-    <button @click="enviar()">Enviar</button>
-    <p>{{ novoUsuario }}</p>
-  </div>
   <table class="table w-full">
     <!-- head -->
     <thead>
@@ -66,26 +61,6 @@ const router = useRouter()
 
 const vaPra = () => {
   router.push('/mensalidades')
-}
-
-// --
-
-const novoUsuario = ref('')
-
-const enviar = async () => {
-  const auth = getAuth()
-  const db = getFirestore()
-
-  // console.log(auth)
-
-  try {
-    const docRef = await addDoc(collection(db, `users/${auth.currentUser.uid}/clients`), {
-      name: novoUsuario.value
-    });
-    console.log("Document written with ID: ", docRef.id);
-  } catch (e) {
-    console.error("Error adding document: ", e);
-  }
 }
 
 </script>
