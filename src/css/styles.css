@@ -14,10 +14,23 @@ html, body {
   min-height: 100vh;
   font-family: 'Montserrat', sans-serif;
   font-size: 18px;
-  /* background-color: azure; */
+  background-color: #000;
   display: flex;
   justify-content: center;
   width: 100%;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-height: 100vh;
+  min-width: 100vw;
+  background-image: url('./../img/pexels-mary-taylor-5896482.jpg');
+  background-repeat: none;
+  background-position: cover;
+  filter: opacity(0.6);
+  z-index: 1
 }
 
 .container {
@@ -26,12 +39,6 @@ html, body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-}
-
-.title {
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 64px;
-  font-weight: 700;
-  color: #2c3e50;
+  filter: opacity(1);
+  z-index: 2;
 }

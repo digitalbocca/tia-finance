@@ -7,12 +7,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth'
 const auth = getAuth()
 
 onAuthStateChanged(auth, user => {
-  if (user) {
-    router.push('/')
-  } else {
-    console.log('Indo para o login')
-    router.push('/login')
-  }
+  user ? router.push('/') : router.push('/login')
 })
 
 const app = createApp(App)
