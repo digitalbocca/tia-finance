@@ -12,13 +12,25 @@
       type="text"
       placeholder="(11) 99999-9999"
     >
-    <button class="btn btn-primary" @click="enviar()">Enviar</button>
+    <button
+      class="btn btn-primary"
+      :class="{ loading: loading }"
+      :disabled="loading"
+      @click="enviar()"
+    >
+      <span v-if="loading">
+        Salvando...
+      </span>
+      <span v-else>
+        Salvar
+      </span>
+    </button>
   </div>
 </template>
 
 <script setup>
 
-import { reactive } from 'vue'
+import { ref, reactive } from 'vue'
 import { getAuth } from 'firebase/auth'
 import { collection, addDoc, getFirestore } from 'firebase/firestore'
 
@@ -27,18 +39,24 @@ const client = reactive({
   phone: ''
 })
 
+const loading = ref(false)
+
 const enviar = async () => {
   const auth = getAuth()
   const db = getFirestore()
 
   try {
+    loading.value = true
     const docRef = await addDoc(collection(db, `users/${auth.currentUser.uid}/clients`), client);
 
     client.name = ''
     client.phone = ''
+
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {
     console.error("Error adding document: ", e);
+  } finally {
+    loading.value = false
   }
 }
 
