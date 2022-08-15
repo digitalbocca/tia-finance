@@ -1,17 +1,23 @@
 <template>
-  <h1>LOGIN</h1>
-  <button
-    class="btn-pagar"
-    @click="login()"
-  >
-    Login com Google
-  </button>
-  <button
-    class="btn-pagar"
-    @click="logout()"
-  >
-    Sair
-  </button>
+  <div class="card w-full sm:w-3/4 lg:w-2/3 bg-base-100 shadow-md glass">
+    <div class="card-body flex flex-col items-center">
+      <button
+        class="btn-pagar"
+        @click="login()"
+      >
+        <img class="w-4" src="./../img/google-icon.svg" alt="">
+        <span class="ml-2">
+          Login com Google
+        </span>
+      </button>
+      <button
+        class="btn-pagar"
+        @click="logout()"
+      >
+        Sair
+      </button>
+    </div>
+  </div>
 </template>
 
 <script setup>
@@ -57,6 +63,6 @@ const logout = () => {
 <style lang="sass">
 
 .btn-pagar
-  @apply btn btn-primary btn-wide
+  @apply btn btn-outline btn-wide
 
 </style>
