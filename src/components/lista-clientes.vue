@@ -14,9 +14,18 @@
         <div class="text-sm opacity-50">{{ user.phone }}</div>
       </div>
     </div>
-    <button class="btn btn-success" @click="vaPra()">
-      <currency-dollar-icon class="w-8 text-white"></currency-dollar-icon>
-    </button>
+    <div class="flex">
+      <div class="pr-1 w-1/2">
+        <button class="btn btn-success w-full" @click="vaPra()">
+          <currency-dollar-icon class="w-8 text-white"></currency-dollar-icon>
+        </button>
+      </div>
+      <div class="pl-1 w-1/2">
+        <button class="btn btn-primary w-full" @click="vaPra()">
+          <cog-icon class="w-8 text-white"></cog-icon>
+        </button>
+      </div>
+    </div>
   </div>
 </div>
   
@@ -28,7 +37,7 @@ import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { getAuth } from 'firebase/auth'
 import { collection, query, onSnapshot, getFirestore } from 'firebase/firestore' 
-import { UserIcon, CurrencyDollarIcon } from '@heroicons/vue/solid'
+import { UserIcon, CurrencyDollarIcon, CogIcon } from '@heroicons/vue/solid'
 
 const users = ref([])
 
