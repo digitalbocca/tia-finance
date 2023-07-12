@@ -5,7 +5,7 @@
       <div class="avatar">
         <div class="mask rounded-full w-12 h-12">
           <div class="bg-gray-300">
-            <user-icon class="text-gray-600"></user-icon>
+            <icon-user class="text-gray-600"></icon-user>
           </div>
         </div>
       </div>
@@ -17,12 +17,12 @@
     <div class="flex">
       <div class="pr-1 w-1/2">
         <button class="btn btn-success w-full" @click="vaPra()">
-          <currency-dollar-icon class="w-8 text-white"></currency-dollar-icon>
+          <icon-coin class="w-8 text-white"></icon-coin>
         </button>
       </div>
       <div class="pl-1 w-1/2">
         <button class="btn btn-primary w-full" @click="vaPra()">
-          <cog-icon class="w-8 text-white"></cog-icon>
+          <icon-settings-filled class="w-8 text-white"></icon-settings-filled>
         </button>
       </div>
     </div>
@@ -37,7 +37,7 @@ import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { getAuth } from 'firebase/auth'
 import { collection, query, onSnapshot, getFirestore } from 'firebase/firestore' 
-import { UserIcon, CurrencyDollarIcon, CogIcon } from '@heroicons/vue/solid'
+import { IconUser, IconCoin, IconSettingsFilled } from '@tabler/icons-vue';
 
 const users = ref([])
 

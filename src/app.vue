@@ -1,6 +1,6 @@
 <template>
-  <app-title></app-title>
-  <router-view></router-view>
+  <app-title/>
+  <router-view/>
   <div class="footer">
     <a
       href="https://www.pexels.com/pt-br/foto/estudantes-multirraciais-com-pasta-de-trabalho-perto-do-onibus-na-cidade-5896482/"
