@@ -1,19 +1,19 @@
 <template>
   <div class="py-8 flex flex-col justify-center lg:flex-row">
-    <input 
+    <input
       class="input input-bordered lg:mr-2"
       v-model="client.name"
       type="text"
       placeholder="Nome completo"
     >
-    <input 
+    <input
       class="input input-bordered lg:mr-2 my-2 lg:my-0"
       v-model="client.phone"
       type="text"
       placeholder="(11) 99999-9999"
     >
     <button
-      class="btn btn-primary"
+      class="btn btn-secondary"
       :class="{ loading: loading }"
       :disabled="loading"
       @click="enviar()"
@@ -47,14 +47,14 @@ const enviar = async () => {
 
   try {
     loading.value = true
-    const docRef = await addDoc(collection(db, `users/${auth.currentUser.uid}/clients`), client);
+    const docRef = await addDoc(collection(db, `users/${auth.currentUser.uid}/clients`), client)
 
     client.name = ''
     client.phone = ''
 
-    console.log("Document written with ID: ", docRef.id);
+    console.log('Document written with ID: ', docRef.id)
   } catch (e) {
-    console.error("Error adding document: ", e);
+    console.error('Error adding document: ', e)
   } finally {
     loading.value = false
   }
