@@ -1,12 +1,10 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { getAuth } from 'firebase/auth'
-import { initApp } from './../js/firebase'
 
-import Home from './../views/home.vue'
-import Mensalidades from './../views/mensalidades.vue'
-import Login from './../views/login.vue'
+import Home from '@/views/home.vue'
+import Mensalidades from '@/views/mensalidades.vue'
+import Login from '@/views/login.vue'
 
-initApp()
 const auth = getAuth()
 
 const router = createRouter({
@@ -18,9 +16,10 @@ const router = createRouter({
       component: Home
     },
     {
-      path: '/mensalidades',
+      path: '/mensalidades/:client',
       name: 'mensalidades',
-      component: Mensalidades
+      component: Mensalidades,
+      props: true
     },
     {
       path: '/login',

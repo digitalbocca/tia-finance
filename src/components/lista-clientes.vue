@@ -1,8 +1,31 @@
+<script setup>
+
+import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import { IconUser, IconCoin, IconSettingsFilled } from '@tabler/icons-vue'
+
+import { useClientsStore } from '@/stores/clients'
+
+const clientsStore = useClientsStore()
+
+// const users = ref([])
+// onMounted()
+
+const router = useRouter()
+
+const vaPra = id => {
+  router.push(`/mensalidades/${id}`)
+}
+
+clientsStore.fetchClients()
+
+</script>
+
 <template>
   <div class="clients-list">
     <div
       class="clients-row"
-      v-for="user in users"
+      v-for="user in clientsStore.getClients"
       :key="user.id"
     >
       <div class="flex items-center space-x-3 mb-4 md:mb-0">
@@ -22,7 +45,7 @@
         <div class="pr-1 w-1/2">
           <button
             class="btn btn-success w-full bg-emerald-600 hover:bg-emerald-700 border-emerald-600 hover:border-emerald-700 "
-            @click="vaPra()"
+            @click="vaPra(user.id)"
           >
             <icon-coin class="w-3/4 h-3/4 text-white"/>
           </button>
@@ -30,7 +53,7 @@
         <div class="pl-1 w-1/2">
           <button
             class="btn btn-secondary w-full"
-            @click="vaPra()"
+            @click="vaPra(user.id)"
           >
             <icon-settings-filled class="w-3/4 h-3/4"/>
           </button>
@@ -38,43 +61,7 @@
       </div>
     </div>
   </div>
-
 </template>
-
-<script setup>
-
-import { ref, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
-import { getAuth } from 'firebase/auth'
-import { collection, query, onSnapshot, getFirestore } from 'firebase/firestore'
-import { IconUser, IconCoin, IconSettingsFilled } from '@tabler/icons-vue'
-
-const users = ref([])
-
-const auth = getAuth()
-const db = getFirestore()
-
-onMounted(async () => {
-  const q = query(collection(db, `users/${auth.currentUser.uid}/clients`))
-  const unsubscribe = onSnapshot(q, querySnapshot => {
-    const snapshotedUsers = []
-    querySnapshot.forEach(doc => {
-      snapshotedUsers.push({
-        id: doc.id,
-        ...doc.data()
-      })
-    })
-    users.value = snapshotedUsers
-  })
-})
-
-const router = useRouter()
-
-const vaPra = () => {
-  router.push('/mensalidades')
-}
-
-</script>
 
 <style lang="sass">
 

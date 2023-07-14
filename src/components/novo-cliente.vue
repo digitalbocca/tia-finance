@@ -1,17 +1,26 @@
 <template>
-  <div class="py-8 flex flex-col justify-center lg:flex-row">
+  <div class="py-8 flex flex-col justify-center">
     <input
-      class="input input-bordered lg:mr-2"
+      class="input input-bordered"
       v-model="client.name"
       type="text"
       placeholder="Nome completo"
     >
+
     <input
-      class="input input-bordered lg:mr-2 my-2 lg:my-0"
+      class="input input-bordered mt-2"
       v-model="client.phone"
       type="text"
       placeholder="(11) 99999-9999"
     >
+
+    <input
+      class="input input-bordered my-2"
+      v-model="client.fee"
+      type="text"
+      placeholder="200"
+    >
+
     <button
       class="btn btn-secondary"
       :class="{ loading: loading }"
@@ -36,7 +45,8 @@ import { collection, addDoc, getFirestore } from 'firebase/firestore'
 
 const client = reactive({
   name: '',
-  phone: ''
+  phone: '',
+  fee: ''
 })
 
 const loading = ref(false)
@@ -51,6 +61,7 @@ const enviar = async () => {
 
     client.name = ''
     client.phone = ''
+    client.fee = ''
 
     console.log('Document written with ID: ', docRef.id)
   } catch (e) {
