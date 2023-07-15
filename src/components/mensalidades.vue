@@ -1,4 +1,5 @@
 <script setup>
+
 import { computed, ref } from 'vue'
 import { useClientsStore } from '@/stores/clients'
 
@@ -63,13 +64,14 @@ const meses = ref([
   }
 ])
 
-const atualizaMes = () => {
-  for (const mes in meses.value) {
-    if (!meses.value[mes].status) {
-      meses.value[mes].status = true
-      return
-    }
-  }
+const atualizaMes = (name) => {
+  meses.value[meses.value.findIndex(el => el.nome === name)].status = true
+  // for (const mes in meses.value) {
+  // if (!meses.value[mes].status) {
+  // meses.value[mes].status = true
+  // return
+  // }
+  // }
 }
 
 </script>
@@ -94,16 +96,15 @@ const atualizaMes = () => {
           {{ currentClient.fee }},00
         </div>
         <div class="stat-desc">Venc: 5 de {{ mes.nome }}</div>
+        <button
+          :disabled="mes.status"
+          class="btn btn-secondary mt-2"
+          @click="atualizaMes(mes.nome)"
+        >
+          {{ mes.status ? 'Pago' : 'Pagar' }}
+        </button>
       </div>
     </div>
-  </div>
-  <div>
-    <button
-      class="btn-pagar"
-      @click="atualizaMes()"
-    >
-      Pago
-    </button>
   </div>
 </template>
 
@@ -113,9 +114,6 @@ const atualizaMes = () => {
   @apply grid gap-4 items-center
   @apply grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4
   @apply my-4
-
-.btn-pagar
-  @apply btn btn-primary btn-wide
 
 .valor
   @apply stat-value text-base-300
